@@ -79,22 +79,6 @@ Index: hping3.git/script.c
  	/* Return the packets to userspace as fast as possible */
  	if (ioctl(pcap_fileno(ra[i].rh_pcapfp), BIOCIMMEDIATE, &on) == -1) {
  		/* XXX non-critical error */
-@@ -1342,11 +1347,12 @@ static int HpingTcl_AppInit(Tcl_Interp *
- 	{
- 		char *home = getenv("HOME");
- 		if (home) {
--			char rcfile[PATH_MAX];
--			snprintf(rcfile, PATH_MAX, "%s/.hpingrc", home);
--			rcfile[PATH_MAX-1] = '\0';
-+			char *rcfile;
-+			if (asprintf(&rcfile, "%s/.hpingrc", home) < 0)
-+				return TCL_ERROR;
- 			Tcl_EvalFile(interp, rcfile);
- 			Tcl_ResetResult(interp);
-+			free(rcfile);
- 		}
- 	}
- 	return TCL_OK;
 Index: hping3.git/libpcap_stuff.c
 ===================================================================
 --- hping3.git.orig/libpcap_stuff.c
