@@ -1,3 +1,11 @@
+hping3 (3.a2.ds2-10.1) unstable; urgency=medium
+
+  [ Arnaud Rebillout ]
+  * Non-maintainer upload.
+  * Don't use asprintf (requires _GNU_SOURCE_) (Closes: #1066662)
+
+ -- Michael Prokop <mika@debian.org>  Wed, 14 Aug 2024 13:02:30 +0200
+
 hping3 (3.a2.ds2-10) unstable; urgency=medium
 
   * debian/changelog: removed some whitespaces.
